@@ -12,7 +12,7 @@ const getUserById = id =>
     .first();
 
 const addUser = user =>
-  userTbl()
+  usersTbl()
     .insert(user)
     .then(([id]) => getUserById(id));
 

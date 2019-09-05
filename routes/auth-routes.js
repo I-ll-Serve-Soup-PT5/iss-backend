@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 
+const users = require('../data/models/usersModel');
+
 router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -9,10 +11,11 @@ router.post('/register', async (req, res) => {
       res.status(400).json({ message: 'missing parameters' });
     }
     const hash = bcrypt.hashSync(password, 8);
-    //const newUser = await users.addUser({ username, password: hash });
+    const newUser = await users.addUser({ username, password: hash });
 
-    //res.status(201).json(newUser);
+    res.status(201).json(newUser);
   } catch(err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -20,7 +23,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    //const user = await users.getUserByName(username);
+    const user = await users.getUserBy({ username }).first();
 
     if (user && bcrypt.compareSync(password, user.password)) {
       req.session.user = user;
