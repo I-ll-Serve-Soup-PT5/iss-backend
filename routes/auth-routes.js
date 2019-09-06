@@ -9,13 +9,14 @@ router.post('/register', async (req, res) => {
 
     if (!username || !password) {
       res.status(400).json({ message: 'missing parameters' });
+      return;
     }
     const hash = bcrypt.hashSync(password, 8);
     const newUser = await users.addUser({ username, password: hash });
 
     res.status(201).json(newUser);
   } catch(err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).json(err);
   }
 });

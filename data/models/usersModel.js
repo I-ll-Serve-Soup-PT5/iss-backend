@@ -16,8 +16,13 @@ const addUser = user =>
     .insert(user)
     .then(([id]) => getUserById(id));
 
+const clearUsers = () =>
+  usersTbl()
+    .del()
+
 module.exports = {
   getUsers,
   getUserBy,
   addUser,
+  clearUsers
 }
