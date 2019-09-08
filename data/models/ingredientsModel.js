@@ -5,7 +5,7 @@ const getIngredientsByUserId = id =>
     .select('i.id', 'i.name', 'ui.quantity')
     .join('users_ingredients as ui', 'ui.user_id', 'u.id')
     .join('ingredients as i', 'ui.ingredient_id', 'i.id')
-    .where({ id });
+    .where('u.id', id);
 
 const getIngredientById = id => db('ingredients').where({ id });
 

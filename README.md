@@ -5,11 +5,30 @@ expected keys for request body not yet decided.  To be added in the future
 ## Register new user
 Post `/api/auth/register`
 
+expected body:  
+`
+{
+  username: <String>,  
+  password: <String>
+}
+`
+
 ## Login
 Post `/api/auth/login`
 
+expected body:  
+`
+{  
+  username: <String>,  
+  password: <String>  
+}
+`
+
 ## Logout
 Get `/api/auth/logout`
+
+---
+### Restricted
 
 ## Get all ingredients
 Get `/api/ingredients`

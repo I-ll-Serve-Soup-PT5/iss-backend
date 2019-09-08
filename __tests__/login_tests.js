@@ -63,7 +63,7 @@ describe('test login/logout', () => {
   });
 
   test('restricted routes reject unauthenticated requests', () => {
-    return request(server).get('/api/ingredients')
+    return request(server).get('/api/ingredients/test')
       .then(res => {
         expect(res.statusCode).toBe(403);
       });
