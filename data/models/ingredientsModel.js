@@ -35,4 +35,5 @@ module.exports = {
   addIngredient,
   updateIngredient,
   removeIngredient,
+  addIngredientToUser,
 };
