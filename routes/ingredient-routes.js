@@ -34,25 +34,34 @@ router.get('/out', async (req, res) => {
   }
 });
 
-router.get('/add', async (req, res) => {
+router.post('/add', async (req, res) => {
   try {
-
+    const newIngredient = await ingredients.addIngredient(req.body).first();
+    res.status(201).json(newIngredient);
   } catch(err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    const change = await ingredients.updateIngredient(id, req.body);
+    if (change) {
+      res.status(200).json({ message: 'edit successful' });
+    } else {
+      res.status(400).json({ message: 'no such ingredient found' });
+    }
   } catch(err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/del/:id', async (req, res) => {
+router.delete('/del/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    await ingredients.removeIngredient(id);
+    res.status(204).end();
   } catch(err) {
     res.status(500).json(err);
   }
