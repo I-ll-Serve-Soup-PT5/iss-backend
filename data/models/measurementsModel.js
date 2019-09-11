@@ -9,14 +9,17 @@ const addMeasruement = measurement =>
     .insert(measurement)
     .then(([id]) => getMeasurementsById(id));
 
-const removeMeasruement = id =>
+const removeMeasurement = id =>
   db('measurements')
     .where({ id })
     .del();
+
+const clearMeasurements = db('measurements').del();
 
 module.exports = {
   getMeasurements,
   getMeasurementsById,
   addMeasruement,
-  removeMeasruement,
+  removeMeasurement,
+  clearMeasurements,
 };

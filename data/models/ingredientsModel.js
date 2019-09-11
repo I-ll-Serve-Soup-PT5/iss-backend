@@ -42,12 +42,6 @@ const addIngredientToUser = (
     quantity,
   });
 
-const addMeasurementToIngredient = (
-  user_id,
-  ingredient_id,
-  measurement_id
-) => {};
-
 module.exports = {
   getIngredientsByUserId,
   getIngredientById,
