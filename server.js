@@ -14,7 +14,7 @@ server.use(helmet());
 server.use(cors());
 server.use(session({
   name: 'webauth',
-  secret: 'secret_stuff',
+  secret: process.env.SECRET || 'secret_stuff',
   httpOnly: true,
   resave: false,
   saveUninitialized: true,
