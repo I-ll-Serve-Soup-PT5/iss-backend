@@ -4,7 +4,7 @@
   "description": "inventory tracking for soup kitchens",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "test": "cross-env DB_ENV=test jest --watch",
     "dev": "nodemon index.js"
   },
