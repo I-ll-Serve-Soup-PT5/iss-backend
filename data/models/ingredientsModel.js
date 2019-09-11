@@ -33,7 +33,7 @@ const clear = () =>
     .del();
 
 const addIngredientToUser = (user_id, ingredient_id, quantity) => {
-  db('users_ingredients').insert({ user_id, ingredient_id, quantity });
+  return db('users_ingredients').insert({ user_id, ingredient_id, quantity });
 };
 
 module.exports = {

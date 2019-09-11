@@ -67,4 +67,14 @@ router.delete('/del/:id', async (req, res) => {
   }
 });
 
+router.post('/assoc', async (req, res) => {
+  try {
+    const { ingredient_id, quantity } = req.body;
+    await ingredients.addIngredientToUser(req.session.user.id, ingredient_id, quantity);
+    res.status(201).json({ message: 'association added' });
+  } catch(err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

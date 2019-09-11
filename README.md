@@ -42,8 +42,33 @@ Get `/api/ingredients/out`
 ## Add ingredient
 Post `/api/ingredients/add`
 
+expected body:
+`
+{
+  name: <String>
+}
+`
+
 ## Edit ingredient
 Put `/api/ingredients/edit/:id`
 
+expected body:
+`
+{
+  name: <String>
+}
+`
+
 ## Delete ingredient
 Delete `/api/ingredients/del/:id`
+
+## Associate ingredient with user
+Post `/api/ingredients/assoc`
+
+expected body:
+`
+{
+  ingredient_id: <Integer>,
+  quantity: <String>
+}
+`
