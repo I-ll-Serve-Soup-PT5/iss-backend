@@ -1,6 +1,6 @@
 # I'll Serve Soup - Backend
 
-expected keys for request body not yet decided.  To be added in the future
+Server deployed at `https://sheltered-wildwood-02734.herokuapp.com/`
 
 ## Register new user
 Post `/api/auth/register`
