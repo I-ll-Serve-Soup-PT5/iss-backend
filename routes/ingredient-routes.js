@@ -36,7 +36,7 @@ router.get('/out', async (req, res) => {
 
 router.post('/add', async (req, res) => {
   try {
-    const newIngredient = await ingredients.addIngredient(req.body).first();
+    const [ newIngredient ] = await ingredients.addIngredient(req.body);
     res.status(201).json(newIngredient);
   } catch(err) {
     res.status(500).json(err);

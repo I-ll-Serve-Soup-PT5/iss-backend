@@ -25,10 +25,19 @@ const removeIngredient = id =>
     .where({ id })
     .del();
 
+const getAll = () =>
+  db('ingredients');
+
+const clear = () =>
+  db('ingredients')
+    .del();
+
 module.exports = {
   getIngredientsByUserId,
   getIngredientById,
   addIngredient,
   updateIngredient,
   removeIngredient,
+  getAll,
+  clear
 };
