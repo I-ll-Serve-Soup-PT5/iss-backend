@@ -25,16 +25,28 @@ const removeIngredient = id =>
     .where({ id })
     .del();
 
-const getAll = () =>
-  db('ingredients');
+const getAll = () => db('ingredients');
 
-const clear = () =>
-  db('ingredients')
-    .del();
+const clear = () => db('ingredients').del();
 
-const addIngredientToUser = (user_id, ingredient_id, quantity) => {
-  return db('users_ingredients').insert({ user_id, ingredient_id, quantity });
-};
+const addIngredientToUser = (
+  user_id,
+  ingredient_id,
+  measurement_id,
+  quantity
+) =>
+  db('users_ingredients').insert({
+    user_id,
+    ingredient_id,
+    measurement_id,
+    quantity,
+  });
+
+const addMeasurementToIngredient = (
+  user_id,
+  ingredient_id,
+  measurement_id
+) => {};
 
 module.exports = {
   getIngredientsByUserId,
@@ -42,7 +54,7 @@ module.exports = {
   addIngredient,
   updateIngredient,
   removeIngredient,
+  addIngredientToUser,
   getAll,
   clear,
-  addIngredientToUser,
 };

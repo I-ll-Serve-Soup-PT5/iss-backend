@@ -1,13 +1,13 @@
 const db = require('../dbConfig');
 
-const usersTbl = () => db('users')
+const usersTbl = () => db('users');
 
 const getUsers = () => usersTbl().select('id', 'username');
 
 const getUserBy = filter => usersTbl().where(filter);
 
 const getUserById = id =>
-  getUserBy({id})
+  getUserBy({ id })
     .select('id', 'username')
     .first();
 
@@ -16,13 +16,11 @@ const addUser = user =>
     .insert(user)
     .then(([id]) => getUserById(id));
 
-const clearUsers = () =>
-  usersTbl()
-    .del()
+const clearUsers = () => usersTbl().del();
 
 module.exports = {
   getUsers,
   getUserBy,
   addUser,
-  clearUsers
-}
+  clearUsers,
+};
