@@ -32,6 +32,10 @@ const clear = () =>
   db('ingredients')
     .del();
 
+const addIngredientToUser = (user_id, ingredient_id, quantity) => {
+  db('users_ingredients').insert({ user_id, ingredient_id, quantity });
+};
+
 module.exports = {
   getIngredientsByUserId,
   getIngredientById,
@@ -39,5 +43,6 @@ module.exports = {
   updateIngredient,
   removeIngredient,
   getAll,
-  clear
+  clear,
+  addIngredientToUser,
 };
