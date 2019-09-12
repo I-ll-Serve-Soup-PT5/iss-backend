@@ -5,6 +5,7 @@ const session = require('express-session');
 
 const authRouter = require('./routes/auth-routes');
 const ingredientsRouter = require('./routes/ingredient-routes');
+const unitsRouter = require('./routes/unit-routes');
 const restricted = require('./middleware/restricted');
 
 const server = express();
@@ -25,5 +26,6 @@ server.use(session({
 
 server.use('/api/auth', authRouter);
 server.use('/api/ingredients', restricted, ingredientsRouter);
+server.use('/api/units', restricted, unitsRouter);
 
 module.exports = server;
