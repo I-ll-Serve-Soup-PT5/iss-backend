@@ -30,13 +30,13 @@ Get `/api/auth/logout`
 ---
 ### Restricted
 
-## Get all ingredients
+## Get all ingredients of, per user
 Get `/api/ingredients`
 
-## Get one ingredient?
+## Get one ingredient
 Get `/api/ingredients/:id`
 
-## Get out of stock ingredients
+## Get out of stock ingredients, per user
 Get `/api/ingredients/out`
 
 ## Add ingredient
@@ -69,6 +69,7 @@ expected body:
 `
 {
   ingredient_id: <Integer>,
-  quantity: <String>
+  quantity: <String>,
+  measurement_id: <Integer> || measurement_type: <String>
 }
 `
