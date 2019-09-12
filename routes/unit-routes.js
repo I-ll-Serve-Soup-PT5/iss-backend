@@ -21,9 +21,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/name/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const unit = await units.getByName(name);
+    res.status(200).json(unit);
+  } catch(err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/add', async (req, res) => {
   try {
-    const newUnit = await units.addMeasruement(req.body);
+    const newUnit = await units.addMeasurement(req.body);
     res.status(201).json(newUnit);
   } catch(err) {
     res.status(500).json(err);

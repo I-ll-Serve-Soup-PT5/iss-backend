@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const ingredients = require('../data/models/ingredientsModel');
+const units = require('../data/models/measurementsModel');
 
 router.get('/test', (req, res) => {
   res.status(200).json({ message: 'middleware test' });
@@ -69,10 +70,20 @@ router.delete('/del/:id', async (req, res) => {
 
 router.post('/assoc', async (req, res) => {
   try {
-    const { ingredient_id, quantity } = req.body;
-    await ingredients.addIngredientToUser(req.session.user.id, ingredient_id, quantity);
+    let { ingredient_id, measurement_id, measurement_type, quantity } = req.body;
+    if (!measurement_id) {
+      const type = await units.getByType(measurement_type);
+      if (!type) {
+        const { id }  = await units.addMeasurement({ type: measurement_type });
+        measurement_id = id;
+      } else {
+        measurement_id = type.id;
+      }
+    }
+    await ingredients.addIngredientToUser(req.session.user.id, ingredient_id, measurement_id, quantity);
     res.status(201).json({ message: 'association added' });
   } catch(err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

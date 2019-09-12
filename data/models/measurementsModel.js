@@ -2,9 +2,11 @@ const db = require('../dbConfig');
 
 const getMeasurements = () => db('measurements');
 
-const getMeasurementsById = id => db('measurements').where({ id });
+const getMeasurementsById = id => db('measurements').where({ id }).first();
 
-const addMeasruement = measurement =>
+const getByType = type => db('measurements').where({ type }).first();
+
+const addMeasurement = measurement =>
   db('measurements')
     .insert(measurement)
     .then(([id]) => getMeasurementsById(id));
@@ -19,7 +21,8 @@ const clearMeasurements = db('measurements').del();
 module.exports = {
   getMeasurements,
   getMeasurementsById,
-  addMeasruement,
+  addMeasurement,
   removeMeasurement,
   clearMeasurements,
+  getByType
 };
