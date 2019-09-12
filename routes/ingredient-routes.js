@@ -17,19 +17,21 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/out', async (req, res) => {
   try {
-    const { id } = req.params;
-    const ingredient = await ingredients.getIngredientById(id);
-    res.status(200).json({ ingredient });
+    const empty = await ingredients.getOutOfStock(req.session.user.id);
+    res.status(200).json(empty);
   } catch(err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.get('/out', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-
+    const { id } = req.params;
+    const [ ingredient ] = await ingredients.getIngredientById(id);
+    res.status(200).json({ ingredient });
   } catch(err) {
     res.status(500).json(err);
   }

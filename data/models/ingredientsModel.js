@@ -42,6 +42,14 @@ const addIngredientToUser = (
     quantity,
   });
 
+const getOutOfStock = user_id =>
+  db('users as u')
+    .select('i.id', 'i.name', 'ui.quantity')
+    .join('users_ingredients as ui', 'ui.user_id', 'u.id')
+    .join('ingredients as i', 'ui.ingredient_id', 'i.id')
+    .where('u.id', user_id)
+    .andWhere('ui.quantity', '<=', 0);
+
 module.exports = {
   getIngredientsByUserId,
   getIngredientById,
@@ -51,4 +59,5 @@ module.exports = {
   addIngredientToUser,
   getAll,
   clear,
+  getOutOfStock
 };
